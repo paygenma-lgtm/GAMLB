@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gamlb-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: gamlb
+      POSTGRES_PASSWORD: gamlb
+      POSTGRES_DB: gamlb
+    volumes:
+      - gamlb_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gamlb -d gamlb"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./apps/api
+    container_name: gamlb-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-to-a-long-random-value}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-local-development-client}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost/auth/callback}
+      COOKIE_NAME: gamlb_session
+      FRONTEND_ORIGIN: http://localhost
+      DATABASE_URL: postgresql://gamlb:gamlb@postgres:5432/gamlb
+      DATABASE_SSL: "false"
+      RUN_MIGRATIONS: "true"
+      UPLOAD_DIR: /app/data/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - gamlb_uploads:/app/data/uploads
+
+  web:
+    build: ./apps/web
+    container_name: gamlb-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  gamlb_postgres_data:
+  gamlb_uploads:

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GAMLB — Поиск по всем записям</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #c8a96e;
+      --accent2: #2e7d5b;
+      --bg: #f5f0e8;
+      --bg2: #fff8f0;
+      --text: #1a1a1a;
+      --text2: #555;
+      --card-bg: #ffffff;
+      --border: #ddd3c0;
+      --nav-h: 102px;
+      --nav-top-h: 50px;
+      --nav-sub-h: 44px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .nav-top {
+      height: var(--nav-top-h);
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .nav-sub {
+      height: var(--nav-sub-h);
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo span { color: #aaa; font-size: 0.7rem; display: block; letter-spacing: 1px; font-weight: normal; margin-top: -3px; }
+
+    .nav-top-right { display: flex; align-items: center; gap: 16px; }
+
+    .lang-switcher { display: flex; gap: 4px; }
+    .lang-btn {
+      background: transparent; border: 1px solid #555; color: #aaa;
+      padding: 3px 9px; border-radius: 4px; cursor: pointer;
+      font-size: 0.72rem; font-family: 'Arial', sans-serif; transition: all 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; height: 100%; }
+    .nav-links li { height: 100%; display: flex; align-items: center; }
+    .nav-links a {
+      color: #c5d3e0; text-decoration: none; font-family: 'Arial', sans-serif;
+      font-size: 0.82rem; letter-spacing: 0.5px; padding: 0 18px;
+      height: 100%; display: flex; align-items: center;
+      border-bottom: 3px solid transparent; transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent); border-bottom-color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ── HERO SEARCH ── */
+    .search-hero {
+      margin-top: var(--nav-h);
+      background: linear-gradient(135deg, #0d2035 0%, #1a3a5c 60%, #0f2d1e 100%);
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .search-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23c8a96e' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .search-hero-inner { position: relative; z-index: 1; }
+
+    .search-hero-badge {
+      display: inline-block;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--accent);
+      padding: 5px 18px; border-radius: 30px;
+      font-size: 0.75rem; letter-spacing: 3px;
+      text-transform: uppercase; font-family: 'Arial', sans-serif;
+      margin-bottom: 20px;
+    }
+    .search-hero h1 {
+      font-size: 2.8rem; color: #fff;
+      letter-spacing: 4px; margin-bottom: 10px;
+    }
+    .search-hero h1 span { color: var(--accent); }
+    .search-hero p {
+      color: #8aa0b4; font-size: 1rem;
+      font-family: 'Arial', sans-serif; margin-bottom: 36px;
+    }
+
+    /* Глобальная строка поиска */
+    .global-search-bar {
+      display: flex;
+      max-width: 720px;
+      margin: 0 auto 0;
+      background: #fff;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .global-search-bar input {
+      flex: 1; border: none; outline: none;
+      padding: 16px 24px; font-size: 1rem;
+      font-family: 'Arial', sans-serif; color: var(--text);
+    }
+    .global-search-bar button {
+      background: var(--accent); border: none;
+      color: #fff; padding: 16px 32px;
+      font-size: 0.9rem; font-family: 'Arial', sans-serif;
+      letter-spacing: 1px; cursor: pointer;
+      text-transform: uppercase; transition: background 0.2s;
+    }
+    .global-search-bar button:hover { background: #b8955a; }
+
+    /* ── КАТЕГОРИИ ПОИСКА ── */
+    .search-categories {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      overflow-x: auto;
+    }
+    .categories-list {
+      display: flex; gap: 0; list-style: none;
+      max-width: 1200px; margin: 0 auto;
+      white-space: nowrap;
+    }
+    .categories-list li a {
+      display: block; padding: 14px 20px;
+      font-family: 'Arial', sans-serif; font-size: 0.82rem;
+      color: var(--text2); text-decoration: none;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .categories-list li a:hover,
+    .categories-list li a.active {
+      color: var(--primary);
+      border-bottom-color: var(--accent);
+    }
+    .categories-list li a .cat-count {
+      font-size: 0.72rem; color: #aaa; margin-left: 4px;
+    }
+
+    /* ── ОСНОВНОЙ КОНТЕНТ ── */
+    .search-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── БОКОВАЯ ПАНЕЛЬ ФИЛЬТРОВ ── */
+    .filters-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--nav-h) + 20px);
+    }
+
+    .filters-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filters-header button {
+      background: none; border: none; color: var(--accent);
+      font-size: 0.75rem; cursor: pointer; font-family: 'Arial', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    .filter-group {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-group:last-child { border-bottom: none; }
+
+    .filter-group-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .filter-row.single { grid-template-columns: 1fr; }
+
+    .filter-input {
+      width: 100%; border: 1px solid var(--border);
+      border-radius: 8px; padding: 9px 12px;
+      font-family: 'Arial', sans-serif; font-size: 0.82rem;
+      color: var(--text); background: var(--bg);
+      outline: none; transition: border-color 0.2s;
+    }
+    .filter-input:focus { border-color: var(--accent); background: #fff; }
+    .filter-input::placeholder { color: #aaa; }
+
+    .filter-select {
+      width: 100%; border: 1px solid var(--border);
+      border-radius: 8px; padding: 9px 12px;
+      font-family: 'Arial', sans-serif; font-size: 0.82rem;
+      color: var(--text); background: var(--bg);
+      outline: none; cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    .filter-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .filter-tag {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 5px 12px;
+      font-size: 0.75rem; font-family: 'Arial', sans-serif;
+      color: var(--text2); cursor: pointer; transition: all 0.18s;
+    }
+    .filter-tag:hover, .filter-tag.active {
+      background: var(--accent); border-color: var(--accent); color: #fff;
+    }
+
+    .filter-checkbox {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Arial', sans-serif; font-size: 0.82rem;
+      color: var(--text2); cursor: pointer; margin-bottom: 8px;
+    }
+    .filter-checkbox input[type=checkbox] {
+      accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer;
+    }
+
+    .btn-search-filter {
+      width: 100%;
+      background: var(--accent); color: #fff; border: none;
+      border-radius: 8px; padding: 12px;
+      font-family: 'Arial', sans-serif; font-size: 0.85rem;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+      margin-top: 4px;
+    }
+    .btn-search-filter:hover { background: #b8955a; }
+
+    /* ── РЕЗУЛЬТАТЫ ── */
+    .results-area {}
+
+    .results-toolbar {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .results-count {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem; color: var(--text2);
+    }
+    .results-count strong { color: var(--primary); font-size: 1rem; }
+
+    .results-sort {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Arial', sans-serif; font-size: 0.8rem; color: var(--text2);
+    }
+    .results-sort select {
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 6px 10px; font-size: 0.8rem;
+      font-family: 'Arial', sans-serif; color: var(--text);
+      background: #fff; outline: none; cursor: pointer;
+    }
+
+    /* Карточка результата */
+    .result-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: start;
+      transition: all 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .result-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateX(2px);
+    }
+    .result-card:hover::before { opacity: 1; }
+
+    .result-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+      color: #fff;
+    }
+
+    .result-body {}
+
+    .result-name {
+      font-size: 1.1rem; color: var(--primary);
+      margin-bottom: 6px; font-weight: bold;
+    }
+    .result-name mark {
+      background: rgba(200,169,110,0.25);
+      color: var(--primary); border-radius: 3px; padding: 0 2px;
+    }
+
+    .result-meta {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      font-family: 'Arial', sans-serif; font-size: 0.8rem;
+      color: var(--text2); margin-bottom: 8px;
+    }
+    .result-meta span { display: flex; align-items: center; gap: 4px; }
+    .result-meta span::before { content: attr(data-icon); }
+
+    .result-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .result-tag {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3px 10px;
+      font-size: 0.72rem; font-family: 'Arial', sans-serif;
+      color: var(--text2);
+    }
+    .result-tag.type { background: rgba(26,58,92,0.08); border-color: rgba(26,58,92,0.2); color: var(--primary); }
+    .result-tag.new { background: rgba(46,125,91,0.1); border-color: rgba(46,125,91,0.3); color: var(--accent2); }
+
+    .result-actions {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 8px; flex-shrink: 0;
+    }
+    .btn-view {
+      background: var(--primary); color: #fff; border: none;
+      border-radius: 7px; padding: 8px 16px;
+      font-family: 'Arial', sans-serif; font-size: 0.78rem;
+      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-view:hover { background: var(--accent); }
+    .btn-save {
+      background: none; color: var(--text2); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px 14px;
+      font-family: 'Arial', sans-serif; font-size: 0.78rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-save:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ПАГИНАЦИЯ ── */
+    .pagination {
+      display: flex; justify-content: center;
+      gap: 6px; margin-top: 36px; flex-wrap: wrap;
+    }
+    .page-btn {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: #fff; color: var(--text2);
+      font-family: 'Arial', sans-serif; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.18s;
+    }
+    .page-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .page-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .page-btn.dots { border: none; background: none; cursor: default; }
+
+    /* ── NO RESULTS ── */
+    .no-results {
+      text-align: center; padding: 80px 20px;
+      color: var(--text2); font-family: 'Arial', sans-serif;
+    }
+    .no-results .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; }
+    .no-results h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 8px; }
+    .no-results p { font-size: 0.9rem; line-height: 1.7; }
+
+    /* ── КОЛЛЕКЦИИ (стартовый экран) ── */
+    .collections-section {
+      margin-bottom: 36px;
+    }
+    .collections-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      font-weight: 700; margin-bottom: 14px;
+    }
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .collection-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 14px;
+      cursor: pointer; transition: all 0.2s;
+      text-align: center;
+    }
+    .collection-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .collection-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .collection-card .name {
+      font-family: 'Arial', sans-serif; font-size: 0.8rem;
+      color: var(--primary); font-weight: 600; margin-bottom: 4px;
+    }
+    .collection-card .count {
+      font-family: 'Arial', sans-serif; font-size: 0.72rem; color: #aaa;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a1520; color: #6a8098;
+      padding: 30px 40px; text-align: center;
+      font-family: 'Arial', sans-serif; font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .search-main { grid-template-columns: 1fr; }
+      .filters-panel { position: static; }
+      .result-card { grid-template-columns: auto 1fr; }
+      .result-actions { flex-direction: row; grid-column: 1/-1; }
+    }
+    @media (max-width: 600px) {
+      .search-hero h1 { font-size: 1.8rem; }
+      .search-main { padding: 20px 16px 60px; }
+    }
+  </style>
+<script type="text/javascript" nonce="000731b0b7a7459ba1b8530ff2f" src="//local.adguard.org?ts=1786241799722&amp;type=content-script&amp;dmn=dpgt-dialog.obs.otc.t-systems.com&amp;url=https%3A%2F%2Fdpgt-dialog.obs.otc.t-systems.com%2Fchat%2Fprivate%2F14809867-ac71-4dbf-b27a-75cae6d15bd6%2Ffile_YJNFYXlNaIqeuvqOi0ynYSNx%2Fsearch.html%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3D21ROSSIDOHHWH855DPK3%252F20260809%252Feu-de%252Fs3%252Faws4_request%26X-Amz-Date%3D20260809T101422Z%26X-Amz-Expires%3D3600%26X-Amz-Signature%3D1fa5218feadcb00a9acd794ca47ed974b82c758bc6eb54c18784514520d776f3%26X-Amz-SignedHeaders%3Dhost%26response-content-disposition%3Dattachment%253B%2520filename%253D%2522search.html%2522%26response-content-type%3Dtext%252Fhtml%253B%2520charset%253Dutf-8%26x-amz-checksum-mode%3DENABLED%26x-id%3DGetObject&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script></head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-top">
+    <a href="index.html" class="logo">GAMLB<span>Genealogische Gemeinschaft</span></a>
+    <div class="nav-top-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-sub">
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav-home">Главная</a></li>
+      <li><a href="search.html" class="active" data-i18n="nav-search">Исследование</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="search-hero">
+  <div class="search-hero-inner">
+    <div class="search-hero-badge" data-i18n="sh-badge">Поиск по всем записям</div>
+    <h1 data-i18n="sh-title">Найди <span>своих предков</span></h1>
+    <p data-i18n="sh-desc">Миллионы записей · Архивы · Реестры · Переписи · Генеалогические деревья</p>
+    <div class="global-search-bar">
+      <input type="text" id="globalSearch" data-i18n-placeholder="sh-input" placeholder="Введите имя, фамилию или ключевое слово…" oninput="onGlobalInput()" onkeydown="if(event.key==='Enter') doSearch()">
+      <button onclick="doSearch()" data-i18n="sh-btn">Поиск</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── КАТЕГОРИИ ── -->
+<nav class="search-categories">
+  <ul class="categories-list">
+    <li><a href="#" class="active" onclick="filterCat('all',this)" data-i18n="cat-all">Все записи <span class="cat-count">8.4M</span></a></li>
+    <li><a href="#" onclick="filterCat('vitals',this)" data-i18n="cat-vitals">Рождение, браки и смерть <span class="cat-count">2.1M</span></a></li>
+    <li><a href="#" onclick="filterCat('census',this)" data-i18n="cat-census">Перепись населения <span class="cat-count">1.8M</span></a></li>
+    <li><a href="#" onclick="filterCat('trees',this)" data-i18n="cat-trees">Генеалогические деревья <span class="cat-count">3.2M</span></a></li>
+    <li><a href="#" onclick="filterCat('news',this)" data-i18n="cat-news">Газеты <span class="cat-count">640K</span></a></li>
+    <li><a href="#" onclick="filterCat('immigration',this)" data-i18n="cat-immigration">Иммиграция <span class="cat-count">420K</span></a></li>
+    <li><a href="#" onclick="filterCat('military',this)" data-i18n="cat-military">Военные записи <span class="cat-count">310K</span></a></li>
+  </ul>
+</nav>
+
+<!-- ── ОСНОВНОЙ КОНТЕНТ ── -->
+<div class="search-main">
+
+  <!-- ФИЛЬТРЫ -->
+  <aside class="filters-panel">
+    <div class="filters-header">
+      <span data-i18n="filter-title">🔧 Фильтры</span>
+      <button onclick="clearFilters()" data-i18n="filter-clear">Очистить</button>
+    </div>
+
+    <!-- ИМЯ -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-name">Имя</div>
+      <div class="filter-row">
+        <input class="filter-input" id="fFirstName" data-i18n-placeholder="fp-firstname" placeholder="Имя и отчество">
+        <input class="filter-input" id="fLastName" data-i18n-placeholder="fp-lastname" placeholder="Фамилия">
+      </div>
+    </div>
+
+    <!-- РОЖДЕНИЕ -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-birth">Рождение</div>
+      <div class="filter-row">
+        <input class="filter-input" id="fBirthYear" type="number" data-i18n-placeholder="fp-year" placeholder="Год" min="1400" max="2000">
+        <input class="filter-input" id="fBirthPlace" data-i18n-placeholder="fp-place" placeholder="Населённый пункт">
+      </div>
+    </div>
+
+    <!-- СМЕРТЬ -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-death">Смерть</div>
+      <div class="filter-row">
+        <input class="filter-input" id="fDeathYear" type="number" data-i18n-placeholder="fp-year" placeholder="Год" min="1400" max="2100">
+        <input class="filter-input" id="fDeathPlace" data-i18n-placeholder="fp-place" placeholder="Населённый пункт">
+      </div>
+    </div>
+
+    <!-- ИММИГРАЦИЯ -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-immigration">Иммиграция</div>
+      <div class="filter-row">
+        <input class="filter-input" id="fImmYear" type="number" data-i18n-placeholder="fp-year" placeholder="Год" min="1400" max="2000">
+        <input class="filter-input" id="fImmPlace" data-i18n-placeholder="fp-place" placeholder="Населённый пункт">
+      </div>
+    </div>
+
+    <!-- ПОЛ -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-gender">Пол</div>
+      <div class="filter-tags">
+        <span class="filter-tag active" onclick="toggleTag(this,'any')" data-i18n="ft-any">Любой</span>
+        <span class="filter-tag" onclick="toggleTag(this,'male')" data-i18n="ft-male">Мужской</span>
+        <span class="filter-tag" onclick="toggleTag(this,'female')" data-i18n="ft-female">Женский</span>
+      </div>
+    </div>
+
+    <!-- ПЕРИОД -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-period">Период</div>
+      <div class="filter-tags">
+        <span class="filter-tag active" onclick="toggleTag(this,'period-all')" data-i18n="fp-all">Все годы</span>
+        <span class="filter-tag" onclick="toggleTag(this,'period-1500')" >1500–1700</span>
+        <span class="filter-tag" onclick="toggleTag(this,'period-1700')">1700–1850</span>
+        <span class="filter-tag" onclick="toggleTag(this,'period-1850')">1850–1950</span>
+        <span class="filter-tag" onclick="toggleTag(this,'period-1950')">1950+</span>
+      </div>
+    </div>
+
+    <!-- ДОПОЛНИТЕЛЬНО -->
+    <div class="filter-group">
+      <div class="filter-group-title" data-i18n="fg-extra">Дополнительно</div>
+      <label class="filter-checkbox">
+        <input type="checkbox" id="fExact">
+        <span data-i18n="fc-exact">Точное совпадение</span>
+      </label>
+      <label class="filter-checkbox">
+        <input type="checkbox" id="fPhoto">
+        <span data-i18n="fc-photo">Только с фото</span>
+      </label>
+      <label class="filter-checkbox">
+        <input type="checkbox" id="fDocs">
+        <span data-i18n="fc-docs">С прикреплёнными документами</span>
+      </label>
+    </div>
+
+    <div class="filter-group">
+      <button class="btn-search-filter" onclick="doSearch()" data-i18n="filter-search-btn">🔍 Искать</button>
+    </div>
+  </aside>
+
+  <!-- РЕЗУЛЬТАТЫ -->
+  <main class="results-area" id="resultsArea">
+
+    <!-- СТАРТОВЫЙ ЭКРАН (коллекции) -->
+    <div id="startScreen">
+      <div class="collections-section">
+        <div class="collections-title" data-i18n="coll-title">Популярные коллекции</div>
+        <div class="collections-grid">
+          <div class="collection-card" onclick="quickSearch('church')">
+            <div class="icon">⛪</div>
+            <div class="name" data-i18n="coll-church">Церковные книги</div>
+            <div class="count">1.2M записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('census')">
+            <div class="icon">📋</div>
+            <div class="name" data-i18n="coll-census">Переписи</div>
+            <div class="count">1.8M записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('passport')">
+            <div class="icon">🪪</div>
+            <div class="name" data-i18n="coll-passport">Паспорта</div>
+            <div class="count">340K записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('military')">
+            <div class="icon">🎖️</div>
+            <div class="name" data-i18n="coll-military">Военные</div>
+            <div class="count">310K записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('immigration')">
+            <div class="icon">🚢</div>
+            <div class="name" data-i18n="coll-immigration">Иммиграция</div>
+            <div class="count">420K записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('newspaper')">
+            <div class="icon">📰</div>
+            <div class="name" data-i18n="coll-newspaper">Газеты</div>
+            <div class="count">640K записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('land')">
+            <div class="icon">🏡</div>
+            <div class="name" data-i18n="coll-land">Земельные записи</div>
+            <div class="count">195K записей</div>
+          </div>
+          <div class="collection-card" onclick="quickSearch('trees')">
+            <div class="icon">🌳</div>
+            <div class="name" data-i18n="coll-trees">Деревья</div>
+            <div class="count">3.2M записей</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- РЕЗУЛЬТАТЫ ПОИСКА (скрыты до запроса) -->
+    <div id="resultsScreen" style="display:none;">
+      <div class="results-toolbar">
+        <div class="results-count" id="resultsCount">
+          <strong>0</strong> <span data-i18n="res-found">записей найдено</span>
+        </div>
+        <div class="results-sort">
+          <span data-i18n="res-sort">Сортировка:</span>
+          <select>
+            <option data-i18n="sort-rel">По релевантности</option>
+            <option data-i18n="sort-year">По году</option>
+            <option data-i18n="sort-name">По имени</option>
+          </select>
+        </div>
+      </div>
+      <div id="resultsList"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 GAMLB — Genealogische Gemeinschaft. <span data-i18n="footer-rights">Alle Rechte vorbehalten.</span></span>
+</footer>
+
+<script>
+// ── i18n ──
+const i18n = {
+  ru: {
+    "nav-home": "Главная", "nav-search": "Исследование",
+    "sh-badge": "Поиск по всем записям",
+    "sh-title": "Найди своих предков",
+    "sh-desc": "Миллионы записей · Архивы · Реестры · Переписи · Генеалогические деревья",
+    "sh-input": "Введите имя, фамилию или ключевое слово…",
+    "sh-btn": "Поиск",
+    "cat-all": "Все записи", "cat-vitals": "Рождение, браки и смерть",
+    "cat-census": "Перепись", "cat-trees": "Деревья",
+    "cat-news": "Газеты", "cat-immigration": "Иммиграция", "cat-military": "Военные",
+    "filter-title": "🔧 Фильтры", "filter-clear": "Очистить",
+    "fg-name": "Имя", "fp-firstname": "Имя и отчество", "fp-lastname": "Фамилия",
+    "fg-birth": "Рождение", "fp-year": "Год", "fp-place": "Населённый пункт",
+    "fg-death": "Смерть", "fg-immigration": "Иммиграция",
+    "fg-gender": "Пол", "ft-any": "Любой", "ft-male": "Мужской", "ft-female": "Женский",
+    "fg-period": "Период", "fp-all": "Все годы",
+    "fg-extra": "Дополнительно",
+    "fc-exact": "Точное совпадение", "fc-photo": "Только с фото", "fc-docs": "С документами",
+    "filter-search-btn": "🔍 Искать",
+    "coll-title": "Популярные коллекции",
+    "coll-church": "Церковные книги", "coll-census": "Переписи",
+    "coll-passport": "Паспорта", "coll-military": "Военные",
+    "coll-immigration": "Иммиграция", "coll-newspaper": "Газеты",
+    "coll-land": "Земельные записи", "coll-trees": "Деревья",
+    "res-found": "записей найдено", "res-sort": "Сортировка:",
+    "sort-rel": "По релевантности", "sort-year": "По году", "sort-name": "По имени",
+    "btn-view": "Открыть", "btn-save": "Сохранить",
+    "footer-rights": "Все права защищены."
+  },
+  de: {
+    "nav-home": "Startseite", "nav-search": "Forschung",
+    "sh-badge": "Suche in allen Einträgen",
+    "sh-title": "Finden Sie Ihre Vorfahren",
+    "sh-desc": "Millionen Einträge · Archive · Register · Volkszählungen · Stammbäume",
+    "sh-input": "Name, Nachname oder Stichwort eingeben…",
+    "sh-btn": "Suchen",
+    "cat-all": "Alle Einträge", "cat-vitals": "Geburts-, Heirats- und Sterberegister",
+    "cat-census": "Volkszählung", "cat-trees": "Stammbäume",
+    "cat-news": "Zeitungen", "cat-immigration": "Einwanderung", "cat-military": "Militär",
+    "filter-title": "🔧 Filter", "filter-clear": "Löschen",
+    "fg-name": "Name", "fp-firstname": "Vor- und Zuname", "fp-lastname": "Nachname",
+    "fg-birth": "Geburt", "fp-year": "Jahr", "fp-place": "Ort",
+    "fg-death": "Tod", "fg-immigration": "Einwanderung",
+    "fg-gender": "Geschlecht", "ft-any": "Beliebig", "ft-male": "Männlich", "ft-female": "Weiblich",
+    "fg-period": "Zeitraum", "fp-all": "Alle Jahre",
+    "fg-extra": "Weitere Optionen",
+    "fc-exact": "Genaue Übereinstimmung", "fc-photo": "Nur mit Foto", "fc-docs": "Mit Dokumenten",
+    "filter-search-btn": "🔍 Suchen",
+    "coll-title": "Beliebte Sammlungen",
+    "coll-church": "Kirchenbücher", "coll-census": "Volkszählungen",
+    "coll-passport": "Pässe", "coll-military": "Militär",
+    "coll-immigration": "Einwanderung", "coll-newspaper": "Zeitungen",
+    "coll-land": "Grundbücher", "coll-trees": "Stammbäume",
+    "res-found": "Einträge gefunden", "res-sort": "Sortierung:",
+    "sort-rel": "Nach Relevanz", "sort-year": "Nach Jahr", "sort-name": "Nach Name",
+    "btn-view": "Öffnen", "btn-save": "Speichern",
+    "footer-rights": "Alle Rechte vorbehalten."
+  },
+  en: {
+    "nav-home": "Home", "nav-search": "Research",
+    "sh-badge": "Search All Records",
+    "sh-title": "Find Your Ancestors",
+    "sh-desc": "Millions of Records · Archives · Registers · Census · Family Trees",
+    "sh-input": "Enter name, surname or keyword…",
+    "sh-btn": "Search",
+    "cat-all": "All Records", "cat-vitals": "Birth, Marriage & Death",
+    "cat-census": "Census", "cat-trees": "Family Trees",
+    "cat-news": "Newspapers", "cat-immigration": "Immigration", "cat-military": "Military",
+    "filter-title": "🔧 Filters", "filter-clear": "Clear",
+    "fg-name": "Name", "fp-firstname": "First & Middle Name", "fp-lastname": "Surname",
+    "fg-birth": "Birth", "fp-year": "Year", "fp-place": "Location",
+    "fg-death": "Death", "fg-immigration": "Immigration",
+    "fg-gender": "Gender", "ft-any": "Any", "ft-male": "Male", "ft-female": "Female",
+    "fg-period": "Period", "fp-all": "All Years",
+    "fg-extra": "More Options",
+    "fc-exact": "Exact Match", "fc-photo": "With Photo Only", "fc-docs": "With Documents",
+    "filter-search-btn": "🔍 Search",
+    "coll-title": "Popular Collections",
+    "coll-church": "Church Records", "coll-census": "Census Records",
+    "coll-passport": "Passports", "coll-military": "Military Records",
+    "coll-immigration": "Immigration", "coll-newspaper": "Newspapers",
+    "coll-land": "Land Records", "coll-trees": "Family Trees",
+    "res-found": "records found", "res-sort": "Sort:",
+    "sort-rel": "By Relevance", "sort-year": "By Year", "sort-name": "By Name",
+    "btn-view": "Open", "btn-save": "Save",
+    "footer-rights": "All rights reserved."
+  }
+};
+
+let currentLang = 'ru';
+let currentCat = 'all';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    if (b.textContent === lang.toUpperCase()) b.classList.add('active');
+  });
+  applyLang();
+}
+
+function applyLang() {
+  const t = i18n[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+}
+
+// ── Поиск ──
+const DEMO_DATA = [
+  { id:1, name:"Иоганн Мартенс", birth:"1842", birthPlace:"Екатеринославль", death:"1910", deathPlace:"Самара", type:"church", icon:"⛪", tags:["Церковная книга","Рождение"] },
+  { id:2, name:"Мария Шмидт", birth:"1878", birthPlace:"Одесса", death:"1945", deathPlace:"Берлин", type:"census", icon:"📋", tags:["Перепись 1897","Иммиграция"] },
+  { id:3, name:"Генрих Вебер", birth:"1865", birthPlace:"Саратов", death:"1931", deathPlace:"Нью-Йорк", type:"immigration", icon:"🚢", tags:["Иммиграция","1902"] },
+  { id:4, name:"Анна Брандт", birth:"1891", birthPlace:"Харьков", death:"1967", deathPlace:"Аргентина", type:"trees", icon:"🌳", tags:["Генеалогическое дерево","Эмиграция"] },
+  { id:5, name:"Якоб Фишер", birth:"1850", birthPlace:"Поволжье", death:"1918", deathPlace:"Одесса", type:"vitals", icon:"📜", tags:["Реестр рождений","Брак 1872"] },
+  { id:6, name:"Катарина Мюллер", birth:"1834", birthPlace:"Берлин", death:"1899", deathPlace:"Москва", type:"military", icon:"🎖️", tags:["Военные архивы","1870"] },
+  { id:7, name:"Фридрих Кауфман", birth:"1879", birthPlace:"Минск", death:"1955", deathPlace:"Чикаго", type:"immigration", icon:"🚢", tags:["Манифест пассажиров","1903"] },
+  { id:8, name:"Эльза Бауэр", birth:"1902", birthPlace:"Киев", death:"1988", deathPlace:"Израиль", type:"news", icon:"📰", tags:["Газета","Некролог 1988"] },
+];
+
+function doSearch() {
+  const query = document.getElementById('globalSearch').value.trim();
+  const firstName = document.getElementById('fFirstName').value.trim();
+  const lastName = document.getElementById('fLastName').value.trim();
+  const searchStr = (query + ' ' + firstName + ' ' + lastName).toLowerCase().trim();
+
+  let results = DEMO_DATA;
+  if (searchStr) {
+    results = results.filter(r =>
+      r.name.toLowerCase().includes(searchStr) ||
+      r.birthPlace.toLowerCase().includes(searchStr) ||
+      r.deathPlace.toLowerCase().includes(searchStr) ||
+      r.tags.some(t => t.toLowerCase().includes(searchStr))
+    );
+  }
+  if (currentCat !== 'all') {
+    results = results.filter(r => r.type === currentCat);
+  }
+
+  showResults(results, searchStr);
+}
+
+function showResults(results, query) {
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('resultsScreen').style.display = 'block';
+  document.getElementById('resultsCount').innerHTML =
+    `<strong>${results.length}</strong> <span>${i18n[currentLang]['res-found'] || 'записей найдено'}</span>`;
+
+  const list = document.getElementById('resultsList');
+  if (results.length === 0) {
+    list.innerHTML = `<div class="no-results">
+      <div class="icon">🔍</div>
+      <h3>Записей не найдено</h3>
+      <p>Попробуйте изменить параметры поиска или очистить фильтры.</p>
+    </div>`;
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+
+  list.innerHTML = results.map(r => {
+    const hl = query ? r.name.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>') : r.name;
+    return `
+    <div class="result-card">
+      <div class="result-icon">${r.icon}</div>
+      <div class="result-body">
+        <div class="result-name">${hl}</div>
+        <div class="result-meta">
+          <span data-icon="📅"> ${r.birth} — ${r.death}</span>
+          <span data-icon="📍"> ${r.birthPlace} → ${r.deathPlace}</span>
+        </div>
+        <div class="result-tags">
+          ${r.tags.map(t => `<span class="result-tag type">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-view">${i18n[currentLang]['btn-view'] || 'Открыть'}</button>
+        <button class="btn-save">${i18n[currentLang]['btn-save'] || 'Сохранить'}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Пагинация (демо)
+  document.getElementById('pagination').innerHTML = [1,2,3,'…',12].map((p,i) =>
+    `<div class="page-btn ${p===1?'active':''} ${p==='…'?'dots':''}">${p}</div>`
+  ).join('');
+}
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.categories-list a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  const hasQuery = document.getElementById('globalSearch').value.trim() ||
+    document.getElementById('fFirstName').value.trim() ||
+    document.getElementById('fLastName').value.trim();
+  if (hasQuery || cat !== 'all') doSearch();
+  return false;
+}
+
+function quickSearch(cat) {
+  currentCat = cat;
+  doSearch();
+}
+
+function onGlobalInput() {
+  const val = document.getElementById('globalSearch').value.trim();
+  if (val.length >= 2) doSearch();
+  if (val.length === 0) {
+    document.getElementById('startScreen').style.display = 'block';
+    document.getElementById('resultsScreen').style.display = 'none';
+  }
+}
+
+function toggleTag(el, val) {
+  el.classList.toggle('active');
+}
+
+function clearFilters() {
+  document.getElementById('fFirstName').value = '';
+  document.getElementById('fLastName').value = '';
+  document.getElementById('fBirthYear').value = '';
+  document.getElementById('fBirthPlace').value = '';
+  document.getElementById('fDeathYear').value = '';
+  document.getElementById('fDeathPlace').value = '';
+  document.getElementById('fImmYear').value = '';
+  document.getElementById('fImmPlace').value = '';
+  document.getElementById('fExact').checked = false;
+  document.getElementById('fPhoto').checked = false;
+  document.getElementById('fDocs').checked = false;
+  document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+  document.getElementById('globalSearch').value = '';
+  document.getElementById('startScreen').style.display = 'block';
+  document.getElementById('resultsScreen').style.display = 'none';
+}
+
+applyLang();
+</script>
+</body>
+</html>

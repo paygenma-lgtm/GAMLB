@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GAMLB — Genealogische Gemeinschaft</title>
+  <!-- Google Identity Services -->
+  <script type="text/javascript" nonce="000731b0b7a7459ba1b8530ff2f" src="//local.adguard.org?ts=1786241799722&amp;type=content-script&amp;dmn=dpgt-dialog.obs.otc.t-systems.com&amp;url=https%3A%2F%2Fdpgt-dialog.obs.otc.t-systems.com%2Fchat%2Fprivate%2F14809867-ac71-4dbf-b27a-75cae6d15bd6%2Ffile_jZNEf6I5duZCLRv6ypzU8rNq%2Findex.html%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3D21ROSSIDOHHWH855DPK3%252F20260809%252Feu-de%252Fs3%252Faws4_request%26X-Amz-Date%3D20260809T075814Z%26X-Amz-Expires%3D3600%26X-Amz-Signature%3D9caa629b427f5fe64f2f07fc698af31b44189848b5db4ad5e4928ab37a5cdac4%26X-Amz-SignedHeaders%3Dhost%26response-content-disposition%3Dattachment%253B%2520filename%253D%2522index.html%2522%26response-content-type%3Dtext%252Fhtml%253B%2520charset%253Dutf-8%26x-amz-checksum-mode%3DENABLED%26x-id%3DGetObject&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script><script type="text/javascript" nonce="000731b0b7a7459ba1b8530ff2f" src="//local.adguard.org?ts=1786160733575&amp;type=content-script&amp;dmn=dpgt-dialog.obs.otc.t-systems.com&amp;url=https%3A%2F%2Fdpgt-dialog.obs.otc.t-systems.com%2Fchat%2Fprivate%2F14809867-ac71-4dbf-b27a-75cae6d15bd6%2Ffile_YcuLR0B3KExAwMdDvYLWB9Ze%2Findex.html%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3D21ROSSIDOHHWH855DPK3%252F20260808%252Feu-de%252Fs3%252Faws4_request%26X-Amz-Date%3D20260808T124508Z%26X-Amz-Expires%3D3600%26X-Amz-Signature%3D9dc57ab38a0dfbeae84b2c25f6a4ac23c04b836e6e309be03c74aa792ce65980%26X-Amz-SignedHeaders%3Dhost%26response-content-disposition%3Dattachment%253B%2520filename%253D%2522index.html%2522%26response-content-type%3Dtext%252Fhtml%253B%2520charset%253Dutf-8%26x-amz-checksum-mode%3DENABLED%26x-id%3DGetObject&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script><script type="text/javascript" nonce="000731b0b7a7459ba1b8530ff2f" src="//local.adguard.org?ts=1786110038768&amp;type=content-script&amp;dmn=dpgt-dialog.obs.otc.t-systems.com&amp;url=https%3A%2F%2Fdpgt-dialog.obs.otc.t-systems.com%2Fchat%2Fprivate%2F14809867-ac71-4dbf-b27a-75cae6d15bd6%2Ffile_JeB6mV993AmWS9zDWVp6ZpdP%2Fgamlb.org-server-index-korrigiert.html%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3D21ROSSIDOHHWH855DPK3%252F20260807%252Feu-de%252Fs3%252Faws4_request%26X-Amz-Date%3D20260807T143945Z%26X-Amz-Expires%3D3600%26X-Amz-Signature%3Da395074a8290802a8cd7740e42e9265bb41832f61895072942b373452ec9896d%26X-Amz-SignedHeaders%3Dhost%26response-content-disposition%3Dattachment%253B%2520filename%253D%2522gamlb.org-server-index-korrigiert.html%2522%26response-content-type%3Dtext%252Fhtml%253B%2520charset%253Dutf-8%26x-amz-checksum-mode%3DENABLED%26x-id%3DGetObject&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #c8a96e;
+      --accent2: #2e7d5b;
+      --bg: #f5f0e8;
+      --bg2: #fff8f0;
+      --text: #1a1a1a;
+      --text2: #555;
+      --card-bg: #ffffff;
+      --border: #ddd3c0;
+      --nav-h: 102px;
+      --nav-top-h: 50px;
+      --nav-sub-h: 44px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Верхняя полоса */
+    .nav-top {
+      height: var(--nav-top-h);
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    /* Нижняя полоса — разделы */
+    .nav-sub {
+      height: var(--nav-sub-h);
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ── LOGO ── */
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo span { color: #aaa; font-size: 0.7rem; display: block; letter-spacing: 1px; font-weight: normal; margin-top: -3px; }
+
+    /* ── NAV TOP правая часть ── */
+    .nav-top-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-top-right {
+        justify-content: center;
+      }
+    }
+
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #555;
+      color: #aaa;
+      padding: 3px 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-family: 'Arial', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-login {
+      background: transparent;
+      border: 1px solid rgba(200,169,110,0.6);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+
+    .btn-login:hover { background: var(--accent); color: #fff; }
+
+    .btn-register {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+
+    .btn-register:hover { background: #b8955a; }
+
+    /* ── NAV SUB ── */
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links li { height: 100%; display: flex; align-items: center; }
+
+    .nav-links a {
+      color: #c5d3e0;
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      padding: 0 18px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ── Dropdown меню ── */
+    .nav-links li.has-dropdown { position: relative; }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 240px;
+      background: #0f2236;
+      border: 1px solid rgba(200,169,110,0.25);
+      border-top: 3px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      z-index: 999;
+      padding: 8px 0;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .nav-links li.has-dropdown:hover .nav-dropdown {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      height: auto;
+      padding: 10px 20px;
+      font-size: 0.83rem;
+      color: #c5d3e0;
+      border-bottom: none;
+      border-left: 3px solid transparent;
+      letter-spacing: 0.3px;
+      transition: all 0.18s;
+    }
+
+    .nav-dropdown a:hover {
+      color: var(--accent);
+      background: rgba(255,255,255,0.06);
+      border-left-color: var(--accent);
+      border-bottom: none;
+    }
+
+    .nav-dropdown .dropdown-title {
+      font-size: 0.7rem;
+      color: #7a9ab5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 20px 4px;
+      pointer-events: none;
+    }
+
+    .nav-dropdown hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 4px 0;
+    }
+
+    .nav-sub-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-search-mini {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 4px 14px;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-search-mini:hover { background: rgba(255,255,255,0.14); }
+
+    .nav-search-mini input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.8rem;
+      width: 160px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .nav-search-mini input::placeholder { color: #888; }
+
+    .nav-search-mini svg { color: #888; flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: var(--nav-h);
+      min-height: 90vh;
+      background: linear-gradient(135deg, #0d2035 0%, #1a3a5c 50%, #0f2d1e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a96e' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-layout {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 56px;
+      align-items: center;
+      padding: 40px 48px 60px;
+    }
+
+    .hero-copy {
+      text-align: left;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--accent);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      color: #fff;
+      letter-spacing: 8px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #a0b4c8;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .hero p {
+      color: #8aa0b4;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 34px;
+      max-width: 620px;
+    }
+
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover { background: #b8955a; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,169,110,0.4); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 14px 36px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-tariffs {
+      display: none; /* СКРЫТО НА ГЛАВНОЙ */
+      background: rgba(9, 21, 33, 0.62);
+      border: 1px solid rgba(200,169,110,0.22);
+      border-radius: 18px;
+      padding: 22px 20px 20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      width: 100%;
+      margin-left: auto;
+    }
+
+    .hero-tariffs-title {
+      color: var(--accent);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero-tariffs-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .hero-tariff-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: auto;
+      width: 100%;
+      padding: 22px 24px 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      color: #d9e4ef;
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      transition: background 0.18s, color 0.18s, transform 0.18s;
+    }
+
+    .hero-tariff-item:hover {
+      background: rgba(199,156,85,0.15);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hero-tariff-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-tariff-price {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1.05rem;
+    }
+
+    .hero-tariff-desc {
+      color: #a9bbca;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .hero-tariff-desc strong { color: #dfe8f0; }
+
+    /* Показать тарифы только в модальном окне регистрации */
+    .modal .hero-tariffs {
+      display: block; /* ВИДНО В МОДАЛЕ */
+      margin: 0 0 24px 0;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+      .hero-copy { text-align: center; margin: 0 auto; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-tariffs { margin: 12px auto 0; }
+      .hero-tariffs-panel { grid-template-columns: 1fr; }
+      .hero-tariff-item { min-height: auto; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 40px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(200,169,110,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(200,169,110,0.3);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features { background: var(--bg2); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--text2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--bg); }
+
+    .steps {
+      display: flex;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      border: 3px solid var(--accent);
+    }
+
+    .step h4 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+    .step p { color: var(--text2); font-size: 0.85rem; font-family: 'Arial', sans-serif; line-height: 1.6; }
+
+    /* ── DNA / TECH SECTION ── */
+    .tech { background: var(--bg2); }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .tech-text h2 { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
+    .tech-text p { color: var(--text2); line-height: 1.8; margin-bottom: 16px; font-family: 'Arial', sans-serif; font-size: 0.95rem; }
+
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      background: var(--primary);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .tech-visual {
+      background: linear-gradient(135deg, var(--primary), #0f2d1e);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .dna-helix {
+      font-size: 4rem;
+      opacity: 0.9;
+    }
+
+    .tech-visual h3 { color: var(--accent); font-size: 1.3rem; }
+    .tech-visual p { color: #8aa0b4; font-size: 0.85rem; font-family: 'Arial', sans-serif; max-width: 200px; line-height: 1.6; }
+
+    /* ── FORUM PREVIEW ── */
+    .forum { background: var(--bg); }
+
+    .forum-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .forum-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .forum-item:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    .forum-avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .forum-meta { flex: 1; }
+    .forum-title { color: var(--primary); font-size: 1rem; margin-bottom: 4px; }
+    .forum-info { color: var(--text2); font-size: 0.8rem; font-family: 'Arial', sans-serif; }
+    .forum-replies { color: var(--accent); font-size: 0.85rem; font-family: 'Arial', sans-serif; text-align: right; flex-shrink: 0; }
+
+    /* ── CTA ── */
+    .cta {
+      background: linear-gradient(135deg, var(--accent2), var(--primary));
+      text-align: center;
+      padding: 100px 40px;
+    }
+
+    .cta h2 { font-size: 2.5rem; color: #fff; margin-bottom: 16px; }
+    .cta p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 40px; font-family: 'Arial', sans-serif; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a1520;
+      color: #6a8098;
+      padding: 60px 40px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    .footer-brand .logo { display: block; margin-bottom: 12px; color: var(--accent); font-size: 1.6rem; letter-spacing: 3px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.8; font-family: 'Arial', sans-serif; }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-col h4::after {
+      content: '▼';
+      font-size: 0.6rem;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: max-height 0.28s ease, opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .footer-col:hover ul,
+    .footer-col:focus-within ul {
+      max-height: 300px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .footer-col:hover h4::after,
+    .footer-col:focus-within h4::after {
+      transform: rotate(180deg);
+    }
+
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #6a8098; text-decoration: none; font-size: 0.85rem; font-family: 'Arial', sans-serif; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid #1a2535;
+      padding-top: 24px;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .modal h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 8px; }
+    .modal p { color: var(--text2); font-size: 0.9rem; margin-bottom: 28px; font-family: 'Arial', sans-serif; }
+
+    .modal-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .modal-tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text2);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+
+    .modal-tab.active { color: var(--primary); border-bottom-color: var(--accent); font-weight: bold; }
+
+    .register-subscription {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2px 0 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(200,169,110,0.12);
+      border: 1px solid rgba(200,169,110,0.35);
+      color: var(--primary);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .subscription-note {
+      margin: 0 0 14px;
+      color: var(--text2);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .subscription-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .subscription-option {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 14px 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .subscription-option:hover {
+      border-color: rgba(200,169,110,0.8);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transform: translateY(-1px);
+    }
+
+    .subscription-option.selected {
+      border-color: var(--accent);
+      background: rgba(200,169,110,0.1);
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+    }
+
+    .subscription-option .plan-name {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 8px;
+    }
+
+    .subscription-option .plan-price {
+      display: block;
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .subscription-option .plan-details {
+      display: block;
+      margin-top: 6px;
+      color: #8a97a1;
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      background: #9aa7b3;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.8rem; color: var(--text2); margin-bottom: 6px; font-family: 'Arial', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { outline: none; border-color: var(--accent); }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: var(--accent); }
+
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+
+    .oauth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.78rem;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .oauth-divider::before,
+    .oauth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .oauth-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .btn-oauth {
+      width: 100%;
+      padding: 11px 16px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .btn-oauth:hover { border-color: var(--accent); background: var(--bg); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .btn-oauth svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── USER PROFILE в навбаре ── */
+    .user-profile {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+    .user-profile.visible { display: flex; }
+
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .user-name {
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      white-space: nowrap;
+      max-width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-caret {
+      color: #aaa;
+      font-size: 0.6rem;
+      margin-left: -4px;
+    }
+
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      min-width: 190px;
+      z-index: 3000;
+      overflow: hidden;
+      animation: slideUp 0.2s ease;
+    }
+    .user-profile:hover .user-dropdown,
+    .user-dropdown:hover { display: block; }
+    
+    /* Держит dropdown открытым когда мышь над ним */
+    .user-profile { position: relative; }
+    .user-profile:hover,
+    .user-profile:has(.user-dropdown:hover) { }
+
+    .user-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.83rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .user-dropdown a:hover { background: var(--bg); color: var(--primary); }
+    .user-dropdown a.logout { color: #c0392b; border-top: 1px solid var(--border); }
+
+    /* ── SCROLL ── */
+    html { scroll-behavior: smooth; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .nav-links { display: none; }
+      .nav-search-mini { display: none; }
+      .nav-top { padding: 0 16px; }
+      .nav-sub { padding: 0 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; }
+      .steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <!-- Верхняя полоса: лого + язык + кнопки -->
+  <div class="nav-top">
+    <a class="logo" href="/">GAMLB <span data-i18n="nav-tagline">Genealogische Gemeinschaft</span></a>
+    <div class="nav-top-right">
+      <!-- Профиль участника (показывается после логина) -->
+      <div class="user-profile" id="userProfile">
+        <div class="user-avatar" id="userAvatar">GM</div>
+        <span class="user-name" id="userName">Gennadi Martens</span>
+        <span class="user-caret">▼</span>
+        <div class="user-dropdown">
+          <a href="#"><span data-i18n="profile-account">Mein Konto</span></a>
+          <a href="#"><span data-i18n="profile-tree">Stammbaum</span></a>
+          <a href="#"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> <span data-i18n="profile-stats">Statistik</span></a>
+          <a href="#" class="logout" onclick="logoutUser()"><span data-i18n="profile-logout">Abmelden</span></a>
+        </div>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn active" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="btn-login" id="btnLogin" onclick="openModal('login')" data-i18n="nav-login">Anmelden</button>
+      <button class="btn-register" id="btnRegister" onclick="openModal('register')" data-i18n="nav-register">Registrieren</button>
+    </div>
+  </div>
+
+  <!-- Нижняя полоса: разделы + поиск -->
+  <div class="nav-sub">
+    <ul class="nav-links" style="margin-left:auto;">
+      <li class="has-dropdown">
+        <a href="#forum" data-i18n="nav-forum">Gemeinschaft</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-community-title">Сообщество</div>
+          <hr>
+          <a href="#forum" data-i18n="dd-forum">Форум сообщества</a>
+          <a href="#" data-i18n="dd-maps">Географические карты</a>
+          <a href="#" data-i18n="dd-colonies">Колонии</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-tree">Stammbaum</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-tree-title">Древо Семьи</div>
+          <hr>
+          <a href="#" data-i18n="dd-tree-mytree">Моё древо</a>
+          <a href="#" data-i18n="dd-tree-photos">Мои фото</a>
+          <a href="#" data-i18n="dd-tree-gedcom">Импорт GEDCOM</a>
+          <a href="#" data-i18n="dd-tree-timeline">Хронология</a>
+          <a href="#" data-i18n="dd-tree-map">Семейная карта</a>
+          <a href="#" data-i18n="dd-tree-backup">Резервная копия</a>
+          <hr>
+          <a href="#" data-i18n="dd-tree-manage">Управление</a>
+          <a href="#" data-i18n="dd-tree-sources">Источники</a>
+          <a href="#" data-i18n="dd-tree-relations">Отношения</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-archive">Archiv</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-archive-title">Archiv</div>
+          <hr>
+          <a href="#" data-i18n="dd-archive-db">База данных архивов</a>
+          <a href="#" data-i18n="dd-archive-church">Церковные сканы</a>
+          <a href="#" data-i18n="dd-archive-family">Посемейные списки</a>
+          <a href="#" data-i18n="dd-archive-household">Похозяйственные списки</a>
+          <hr>
+          <a href="#" data-i18n="dd-archive-photoarchive">Фото Архив</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-photo">Личные Фото</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-photo-title">Личные Фото</div>
+          <hr>
+          <a href="#" data-i18n="dd-photo-myphotos">Мои Фото</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-dna">DNA</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-dna-title">DNA</div>
+          <hr>
+          <a href="#" data-i18n="dd-dna-overview">Обзор ДНК</a>
+          <a href="#" data-i18n="dd-dna-analysis">Анализ ДНК</a>
+          <a href="#" data-i18n="dd-dna-matches">Совпадения ДНК</a>
+          <a href="#" data-i18n="dd-dna-manage">Управление ДНК</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-ki">KI</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-ki-title">KI</div>
+          <hr>
+          <a href="#" data-i18n="dd-ki-ai">ИИ</a>
+          <a href="#" data-i18n="dd-ki-ocr">OCR/HTR</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="#" data-i18n="nav-search">Forschung</a>
+        <div class="nav-dropdown">
+          <div class="dropdown-title" data-i18n="dd-search-title">Forschung</div>
+          <hr>
+          <a href="/search"  data-i18n="dd-search-all">Suche in allen Einträgen</a>
+          <a href="#" data-i18n="dd-search-vitals">Geburts-, Heirats- und Sterberegister</a>
+          <a href="#" data-i18n="dd-search-census">Volkszählungsaufzeichnungen</a>
+          <a href="#" data-i18n="dd-search-trees">Stammbäume</a>
+          <a href="#" data-i18n="dd-search-news">Zeitungen</a>
+          <a href="#" data-i18n="dd-search-immigration">Einwanderungsaufzeichnungen</a>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-sub-right">
+      <div class="nav-search-mini">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" data-i18n-placeholder="nav-search-placeholder" placeholder="Suchen…">
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <div class="hero-badge" data-i18n="hero-badge">Genealogische Plattform der nächsten Generation</div>
+      <h1>GAMLB</h1>
+      <div class="hero-subtitle" data-i18n="hero-subtitle">Entdecken Sie Ihre Wurzeln. Verbinden Sie Generationen.</div>
+      <p data-i18n="hero-desc">Erforschen Sie Ihre Familiengeschichte mit modernster KI, DNA-Analyse und OCR-Technologie. Tauchen Sie ein in Archive, bauen Sie Stammbäume und verbinden Sie sich mit einer weltweiten Gemeinschaft von Genealogen.</p>
+    </div>
+
+    <div class="hero-tariffs" id="heroTariffs">
+      <div class="hero-tariffs-title" data-i18n="tariffs-title">Tarife</div>
+      <div class="hero-tariffs-panel" aria-label="Tarife">
+        <a class="hero-tariff-item" href="#" onclick="openModal('register'); switchTab('register'); return false;">
+          <span class="hero-tariff-name" data-i18n="tariff1-name">Tarif 1</span>
+          <span class="hero-tariff-price">0€</span>
+          <span class="hero-tariff-desc" data-i18n="tariff1-desc"><strong>100</strong> Personen im Familienstammbaum · Forum · Suche</span>
+        </a>
+        <a class="hero-tariff-item" href="#" onclick="openModal('register'); switchTab('register'); return false;">
+          <span class="hero-tariff-name" data-i18n="tariff2-name">Tarif 2</span>
+          <span class="hero-tariff-price">59€</span>
+          <span class="hero-tariff-desc" data-i18n="tariff2-desc"><strong>500</strong> Personen im Familienstammbaum · Forum · Suche · Archiv</span>
+        </a>
+        <a class="hero-tariff-item" href="#" onclick="openModal('register'); switchTab('register'); return false;">
+          <span class="hero-tariff-name" data-i18n="tariff3-name">Tarif 3</span>
+          <span class="hero-tariff-price">99€</span>
+          <span class="hero-tariff-desc" data-i18n="tariff3-desc"><strong>Unbegrenzt</strong> · alle Funktionen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="functions">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="feat-tag">Funktionen</span>
+    <h2 data-i18n="feat-title">Alles für Ihre Familienforschung</h2>
+    <p data-i18n="feat-desc">Von der Dokumentenanalyse bis zur DNA-Auswertung — GAMLB bietet Ihnen alle Werkzeuge an einem Ort.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🌳</span>
+      <h3 data-i18n="f1-title">Stammbaum-Builder</h3>
+      <p data-i18n="f1-desc">Erstellen Sie interaktive Stammbäume mit unbegrenzten Generationen, Fotos und Dokumenten. Import/Export in GEDCOM-Format.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📷</span>
+      <h3 data-i18n="f2-title">OCR & HTR</h3>
+      <p data-i18n="f2-desc">Digitalisieren Sie alte Handschriften und Dokumente automatisch. Unsere KI erkennt historische Schriften aus dem 17.–20. Jahrhundert.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🤖</span>
+      <h3 data-i18n="f3-title">KI-Assistent</h3>
+      <p data-i18n="f3-desc">Lassen Sie unsere KI Zusammenhänge finden, Dokumente analysieren und Forschungsstrategien für Ihre Familiengeschichte vorschlagen.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🧬</span>
+      <h3 data-i18n="f4-title">DNA-Analyse</h3>
+      <p data-i18n="f4-desc">Laden Sie Ihre DNA-Rohdaten hoch und finden Sie genetische Verwandte. Ethnizitätsschätzungen und Haplogruppen-Analyse.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📂</span>
+      <h3 data-i18n="f5-title">Archiv-Datenbank</h3>
+      <p data-i18n="f5-desc">Zugriff auf Millionen digitalisierter Kirchenbücher, Standesamtsakten und historischer Dokumente aus ganz Europa.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💬</span>
+      <h3 data-i18n="f6-title">Community-Forum</h3>
+      <p data-i18n="f6-desc">Tauschen Sie sich mit Tausenden von Genealogen aus, stellen Sie Fragen und helfen Sie anderen bei der Forschung.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔍</span>
+      <h3 data-i18n="f7-title">Intelligente Suche</h3>
+      <p data-i18n="f7-desc">Durchsuchen Sie die gesamte Datenbank nach Namen, Orten, Daten und Berufen — auch mit Tippfehlern und Namensvarianten.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🗺️</span>
+      <h3 data-i18n="f8-title">Geografische Karten</h3>
+      <p data-i18n="f8-desc">Verfolgen Sie die Migration Ihrer Familie auf interaktiven historischen Karten durch die Jahrhunderte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="how-tag">Prozess</span>
+    <h2 data-i18n="how-title">In 4 Schritten zur Familiengeschichte</h2>
+    <p data-i18n="how-desc">Einfach, schnell und ohne Vorkenntnisse loslegen.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4 data-i18n="step1-title">Registrieren</h4>
+      <p data-i18n="step1-desc">Erstellen Sie Ihr kostenloses Konto und wählen Sie Ihren Plan.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4 data-i18n="step2-title">Stammbaum anlegen</h4>
+      <p data-i18n="step2-desc">Beginnen Sie mit sich selbst und erweitern Sie den Baum Schritt für Schritt.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4 data-i18n="step3-title">Dokumente hochladen</h4>
+      <p data-i18n="step3-desc">Laden Sie Fotos und Dokumente hoch — unsere KI analysiert sie automatisch.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4 data-i18n="step4-title">Entdecken & Verbinden</h4>
+      <p data-i18n="step4-desc">Finden Sie Verwandte, entdecken Sie Dokumente und teilen Sie Ihre Geschichte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DNA / TECH -->
+<section class="tech" id="tech">
+  <div class="tech-grid">
+    <div class="tech-text">
+      <span class="section-tag" data-i18n="tech-tag">Technologie</span>
+      <h2 data-i18n="tech-title">Modernste Technologie für Ihre Forschung</h2>
+      <p data-i18n="tech-p1">Unsere KI-gestützte OCR/HTR-Engine erkennt historische Handschriften mit einer Genauigkeit von über 95%. Unterstützt werden Texte aus dem 17. bis 20. Jahrhundert in mehr als 12 Sprachen.</p>
+      <p data-i18n="tech-p2">Die DNA-Analyse vergleicht Ihre genetischen Daten mit einer weltweiten Datenbank, um verwandte Familien zu identifizieren und Ihre Herkunft präzise zu bestimmen.</p>
+      <div class="tech-pills">
+        <span class="pill">OCR / HTR</span>
+        <span class="pill">DNA Matching</span>
+        <span class="pill">NLP / KI</span>
+        <span class="pill">GEDCOM</span>
+        <span class="pill">REST API</span>
+        <span class="pill">Cloud-Speicher</span>
+      </div>
+    </div>
+    <div class="tech-visual">
+      <div class="dna-helix">🧬</div>
+      <h3 data-i18n="tech-dna-title">DNA-Analyse</h3>
+      <p data-i18n="tech-dna-desc">Laden Sie Rohdaten von 23andMe, AncestryDNA oder MyHeritage hoch und entdecken Sie Ihre genetische Geschichte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORUM PREVIEW -->
+<section class="forum" id="forum">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="forum-tag">Community</span>
+    <h2 data-i18n="forum-title">Aktuelle Diskussionen</h2>
+    <p data-i18n="forum-desc">Werden Sie Teil einer aktiven Gemeinschaft von Genealogie-Enthusiasten.</p>
+  </div>
+  <div class="forum-list">
+    <div class="forum-item">
+      <div class="forum-avatar">M</div>
+      <div class="forum-meta">
+        <div class="forum-title" data-i18n="fi1-title">Kirchenbücher aus Russland — wo finde ich Digitalisate?</div>
+        <div class="forum-info" data-i18n="fi1-info">von Maria K. · vor 2 Stunden · Kategorie: Archive</div>
+      </div>
+      <div class="forum-replies">47 <span data-i18n="replies">Antworten</span></div>
+    </div>
+    <div class="forum-item">
+      <div class="forum-avatar">H</div>
+      <div class="forum-meta">
+        <div class="forum-title" data-i18n="fi2-title">HTR-Ergebnisse verbessern: Tipps & Tricks</div>
+        <div class="forum-info" data-i18n="fi2-info">von Hans B. · vor 5 Stunden · Kategorie: OCR/HTR</div>
+      </div>
+      <div class="forum-replies">23 <span data-i18n="replies">Antworten</span></div>
+    </div>
+    <div class="forum-item">
+      <div class="forum-avatar">A</div>
+      <div class="forum-meta">
+        <div class="forum-title" data-i18n="fi3-title">DNA-Match gefunden — wie weiter vorgehen?</div>
+        <div class="forum-info" data-i18n="fi3-info">von Anna S. · vor 1 Tag · Kategorie: DNA</div>
+      </div>
+      <div class="forum-replies">89 <span data-i18n="replies">Antworten</span></div>
+    </div>
+    <div class="forum-item">
+      <div class="forum-avatar">P</div>
+      <div class="forum-meta">
+        <div class="forum-title" data-i18n="fi4-title">GAMLB KI-Assistent: Erfahrungsberichte</div>
+        <div class="forum-info" data-i18n="fi4-info">von Peter L. · vor 2 Tagen · Kategorie: KI</div>
+      </div>
+      <div class="forum-replies">134 <span data-i18n="replies">Antworten</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <h2 data-i18n="cta-title">Beginnen Sie Ihre Reise in die Vergangenheit</h2>
+  <p data-i18n="cta-desc">Über 500.000 Genealogen vertrauen bereits auf GAMLB. Werden Sie Teil unserer wachsenden Gemeinschaft.</p>
+  <button class="btn-primary" onclick="openModal('register')" data-i18n="cta-btn">Jetzt kostenlos registrieren</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">GAMLB</span>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer-product">Produkt</h4>
+      <ul>
+        <li><a href="#" data-i18n="footer-tree">Stammbaum</a></li>
+        <li><a href="#" data-i18n="footer-ocr">OCR / HTR</a></li>
+        <li><a href="#" data-i18n="footer-dna">DNA-Analyse</a></li>
+        <li><a href="#" data-i18n="footer-ki">KI-Assistent</a></li>
+        <li><a href="#" data-i18n="footer-archive">Archiv</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer-community">Community</h4>
+      <ul>
+        <li><a href="#" data-i18n="footer-forum">Forum</a></li>
+        <li><a href="#" data-i18n="footer-blog">Blog</a></li>
+        <li><a href="#" data-i18n="footer-events">Events</a></li>
+        <li><a href="#" data-i18n="footer-experts">Experten</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer-legal">Rechtliches</h4>
+      <ul>
+        <li><a href="#" data-i18n="footer-privacy">Datenschutz</a></li>
+        <li><a href="#" data-i18n="footer-terms">AGB</a></li>
+        <li><a href="#" data-i18n="footer-imprint">Impressum</a></li>
+        <li><a href="#" data-i18n="footer-contact">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 GAMLB — <span data-i18n="footer-rights">Alle Rechte vorbehalten</span></p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 data-i18n="modal-title">Willkommen bei GAMLB</h3>
+    <p data-i18n="modal-desc">Entdecken Sie Ihre Familiengeschichte</p>
+    <div class="modal-tabs">
+      <div class="modal-tab active" onclick="switchTab('login')" data-i18n="tab-login">Anmelden</div>
+      <div class="modal-tab" onclick="switchTab('register')" data-i18n="tab-register">Registrieren</div>
+    </div>
+    <div class="form-panel active" id="panel-login">
+      <div id="login-error" style="display:none;color:#c0392b;font-size:0.82rem;margin-bottom:12px;padding:9px 12px;background:#fdf0ee;border-radius:6px;border-left:3px solid #c0392b;"></div>
+      <div class="form-group">
+        <label data-i18n="form-email">E-Mail</label>
+        <input id="login-email" type="email" placeholder="name@example.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label data-i18n="form-password">Passwort</label>
+        <input id="login-password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+      </div>
+      <button class="btn-submit" id="loginBtn" data-i18n="form-login-btn" onclick="submitLogin()">Anmelden</button>
+    </div>
+    <div class="form-panel" id="panel-register">
+      <div id="register-error" style="display:none;color:#c0392b;font-size:0.82rem;margin-bottom:12px;padding:9px 12px;background:#fdf0ee;border-radius:6px;border-left:3px solid #c0392b;"></div>
+      <div class="register-subscription">Подписка</div>
+      <p class="subscription-note">Выберите тариф, чтобы продолжить регистрацию.</p>
+      <div class="subscription-grid" id="subscriptionGrid">
+        <button class="subscription-option" type="button" data-plan-name="Тариф 1" onclick="selectSubscriptionPlan('0€','Тариф 1',this)">
+          <span class="plan-name">Starter</span>
+          <span class="plan-price">0€</span>
+          <span class="plan-details">100 Personen · Forum · Suche</span>
+        </button>
+        <button class="subscription-option" type="button" data-plan-name="Тариф 2" onclick="selectSubscriptionPlan('59€','Тариф 2',this)">
+          <span class="plan-name">Plus</span>
+          <span class="plan-price">59€</span>
+          <span class="plan-details">500 Personen · Archiv · Export</span>
+        </button>
+        <button class="subscription-option" type="button" data-plan-name="Тариф 3" onclick="selectSubscriptionPlan('99€','Тариф 3',this)">
+          <span class="plan-name">Pro</span>
+          <span class="plan-price">99€</span>
+          <span class="plan-details">Unbegrenzt · alle Funktionen</span>
+        </button>
+      </div>
+      <!-- Google Sign-In через GSI renderButton (не требует redirect URI) -->
+      <div id="googleBtnContainer" style="display:flex;justify-content:center;margin:8px 0;min-height:44px;"></div>
+      <div class="oauth-divider"><span data-i18n="oauth-or">oder</span></div>
+      <div class="form-group">
+        <label data-i18n="form-name">Vor- und Nachname</label>
+        <input id="reg-name" type="text" placeholder="Max Mustermann" autocomplete="name"/>
+      </div>
+      <div class="form-group">
+        <label data-i18n="form-email">E-Mail</label>
+        <input id="reg-email" type="email" placeholder="name@example.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label data-i18n="form-password">Passwort (min. 8 Zeichen)</label>
+        <input id="reg-password" type="password" placeholder="••••••••" autocomplete="new-password"/>
+      </div>
+      <button class="btn-submit" id="registerContinueBtn" data-i18n="form-register-btn" disabled onclick="submitRegister()">Kostenlos registrieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── I18N ──
+const translations = {
+  de: {
+    "nav-tagline": "Genealogische Gemeinschaft",
+    "nav-features": "Funktionen", "nav-how": "Wie es funktioniert",
+    "nav-tech": "Technologie", "nav-forum": "Gemeinschaft",
+      "dd-community-title": "Gemeinschaft", "dd-forum": "Forum", "dd-maps": "Geografische Karten", "dd-colonies": "Kolonien",
+      "dd-ki-title": "KI", "dd-ki-ai": "KI-Assistent", "dd-ki-ocr": "OCR/HTR",
+      "dd-archive-title": "Archiv", "dd-archive-db": "Archivdatenbank", "dd-archive-church": "Kirchenscans", "dd-archive-family": "Familienlisten", "dd-archive-household": "Haushaltslisten", "dd-archive-photoarchive": "Fotoarchiv",
+      "dd-dna-title": "DNA", "dd-dna-analysis": "DNA-Analyse", "dd-dna-overview": "DNA-Übersicht", "dd-dna-matches": "DNA-Übereinstimmungen", "dd-dna-manage": "DNA-Verwaltung",
+      "dd-search-title": "Forschung", "dd-search-all": "Suche in allen Einträgen", "dd-search-vitals": "Geburts-, Heirats- und Sterberegister", "dd-search-census": "Volkszählungsaufzeichnungen", "dd-search-trees": "Stammbäume", "dd-search-news": "Zeitungen", "dd-search-immigration": "Einwanderungsaufzeichnungen", 
+    "dd-tree-title": "Stammbaum", "dd-tree-mytree": "Mein Stammbaum", "dd-tree-photos": "Meine Fotos", "dd-tree-gedcom": "GEDCOM importieren", "dd-tree-timeline": "Chronologie", "dd-tree-map": "Familienkarte", "dd-tree-backup": "Datensicherung", "dd-tree-manage": "Verwaltung", "dd-tree-sources": "Quellen", "dd-tree-relations": "Beziehungen", "nav-tree": "Stammbaum", "nav-archive": "Archiv", "dd-photo-title": "Persönliche Fotos", "dd-photo-myphotos": "Meine Fotos", "nav-photo": "Persönliche Fotos", "nav-dna": "DNA", "nav-ki": "KI", "nav-search": "Forschung",
+    "nav-search-placeholder": "Suchen…",
+    "nav-login": "Anmelden", "nav-register": "Registrieren",
+    "tariffs-title": "Tarife",
+    "tariff1-name": "Tarif 1", "tariff1-desc": "100 Personen im Familienstammbaum · Forum · Suche",
+    "tariff2-name": "Tarif 2", "tariff2-desc": "500 Personen im Familienstammbaum · Forum · Suche · Archivansicht",
+    "tariff3-name": "Tarif 3", "tariff3-desc": "Unbegrenzt · alle Funktionen",
+    "hero-badge": "Genealogische Plattform der nächsten Generation",
+    "hero-subtitle": "Entdecken Sie Ihre Wurzeln. Verbinden Sie Generationen.",
+    "hero-desc": "Erforschen Sie Ihre Familiengeschichte mit modernster KI, DNA-Analyse und OCR-Technologie. Tauchen Sie ein in Archive, bauen Sie Stammbäume und verbinden Sie sich mit einer weltweiten Gemeinschaft von Genealogen.",
+    "stat-members": "Mitglieder", "stat-docs": "Dokumente", "stat-ocr": "OCR-Genauigkeit", "stat-countries": "Länder",
+    "feat-tag": "Funktionen", "feat-title": "Alles für Ihre Familienforschung",
+    "feat-desc": "Von der Dokumentenanalyse bis zur DNA-Auswertung — GAMLB bietet Ihnen alle Werkzeuge an einem Ort.",
+    "f1-title": "Stammbaum-Builder", "f1-desc": "Erstellen Sie interaktive Stammbäume mit unbegrenzten Generationen, Fotos und Dokumenten. Import/Export in GEDCOM-Format.",
+    "f2-title": "OCR & HTR", "f2-desc": "Digitalisieren Sie alte Handschriften und Dokumente automatisch. Unsere KI erkennt historische Schriften aus dem 17.–20. Jahrhundert.",
+    "f3-title": "KI-Assistent", "f3-desc": "Lassen Sie unsere KI Zusammenhänge finden, Dokumente analysieren und Forschungsstrategien vorschlagen.",
+    "f4-title": "DNA-Analyse", "f4-desc": "Laden Sie Ihre DNA-Rohdaten hoch und finden Sie genetische Verwandte. Ethnizitätsschätzungen und Haplogruppen-Analyse.",
+    "f5-title": "Archiv-Datenbank", "f5-desc": "Zugriff auf Millionen digitalisierter Kirchenbücher, Standesamtsakten und historischer Dokumente.",
+    "f6-title": "Community-Forum", "f6-desc": "Tauschen Sie sich mit Tausenden von Genealogen aus, stellen Sie Fragen und helfen Sie anderen.",
+    "f7-title": "Intelligente Suche", "f7-desc": "Durchsuchen Sie die gesamte Datenbank nach Namen, Orten, Daten und Berufen — auch mit Namensvarianten.",
+    "f8-title": "Geografische Karten", "f8-desc": "Verfolgen Sie die Migration Ihrer Familie auf interaktiven historischen Karten.",
+    "how-tag": "Prozess", "how-title": "In 4 Schritten zur Familiengeschichte", "how-desc": "Einfach, schnell und ohne Vorkenntnisse loslegen.",
+    "step1-title": "Registrieren", "step1-desc": "Erstellen Sie Ihr kostenloses Konto und wählen Sie Ihren Plan.",
+    "step2-title": "Stammbaum anlegen", "step2-desc": "Beginnen Sie mit sich selbst und erweitern Sie den Baum Schritt für Schritt.",
+    "step3-title": "Dokumente hochladen", "step3-desc": "Laden Sie Fotos und Dokumente hoch — unsere KI analysiert sie automatisch.",
+    "step4-title": "Entdecken & Verbinden", "step4-desc": "Finden Sie Verwandte, entdecken Sie Dokumente und teilen Sie Ihre Geschichte.",
+    "tech-tag": "Technologie", "tech-title": "Modernste Technologie für Ihre Forschung",
+    "tech-p1": "Unsere KI-gestützte OCR/HTR-Engine erkennt historische Handschriften mit einer Genauigkeit von über 95%. Unterstützt werden Texte in mehr als 12 Sprachen.",
+    "tech-p2": "Die DNA-Analyse vergleicht Ihre genetischen Daten mit einer weltweiten Datenbank.",
+    "tech-dna-title": "DNA-Analyse", "tech-dna-desc": "Laden Sie Rohdaten von 23andMe, AncestryDNA oder MyHeritage hoch.",
+    "forum-tag": "Community", "forum-title": "Aktuelle Diskussionen", "forum-desc": "Werden Sie Teil einer aktiven Gemeinschaft.",
+    "fi1-title": "Kirchenbücher aus Russland — wo finde ich Digitalisate?", "fi1-info": "von Maria K. · vor 2 Stunden · Kategorie: Archive",
+    "fi2-title": "HTR-Ergebnisse verbessern: Tipps & Tricks", "fi2-info": "von Hans B. · vor 5 Stunden · Kategorie: OCR/HTR",
+    "fi3-title": "DNA-Match gefunden — wie weiter vorgehen?", "fi3-info": "von Anna S. · vor 1 Tag · Kategorie: DNA",
+    "fi4-title": "GAMLB KI-Assistent: Erfahrungsberichte", "fi4-info": "von Peter L. · vor 2 Tagen · Kategorie: KI",
+    "replies": "Antworten",
+    "cta-title": "Beginnen Sie Ihre Reise in die Vergangenheit", "cta-desc": "Über 500.000 Genealogen vertrauen bereits auf GAMLB.", "cta-btn": "Jetzt kostenlos registrieren",
+    "footer-product": "Produkt", "footer-tree": "Stammbaum", "footer-ocr": "OCR / HTR", "footer-dna": "DNA-Analyse", "footer-ki": "KI-Assistent", "footer-archive": "Archiv",
+    "footer-community": "Community", "footer-forum": "Forum", "footer-blog": "Blog", "footer-events": "Events", "footer-experts": "Experten",
+    "footer-legal": "Rechtliches", "footer-privacy": "Datenschutz", "footer-terms": "AGB", "footer-imprint": "Impressum", "footer-contact": "Kontakt",
+    "footer-rights": "Alle Rechte vorbehalten",
+    "modal-title": "Willkommen bei GAMLB", "modal-desc": "Entdecken Sie Ihre Familiengeschichte",
+    "tab-login": "Anmelden", "tab-register": "Registrieren",
+    "form-email": "E-Mail", "form-password": "Passwort", "form-name": "Vor- und Nachname",
+    "form-login-btn": "Anmelden", "form-register-btn": "Kostenlos registrieren",
+    "oauth-google": "Mit Google registrieren", "oauth-or": "oder",
+    "profile-account": "Mein Konto", "profile-tree": "Stammbaum", "profile-stats": "Statistik", "profile-logout": "Abmelden"
+  },
+  ru: {
+    "nav-tagline": "Генеалогическое сообщество",
+    "nav-features": "Функции", "nav-how": "Как это работает",
+    "nav-tech": "Технологии", "nav-forum": "Сообщество",
+      "dd-community-title": "Сообщество", "dd-forum": "Форум сообщества", "dd-maps": "Географические карты", "dd-colonies": "Колонии",
+      "dd-ki-title": "KI", "dd-ki-ai": "ИИ", "dd-ki-ocr": "OCR/HTR",
+      "dd-archive-title": "Архив", "dd-archive-db": "База данных архивов", "dd-archive-church": "Церковные сканы", "dd-archive-family": "Посемейные списки", "dd-archive-household": "Похозяйственные списки", "dd-archive-photoarchive": "Фото Архив",
+      "dd-dna-title": "ДНК", "dd-dna-analysis": "Анализ ДНК", "dd-dna-overview": "Обзор ДНК", "dd-dna-matches": "Совпадения ДНК", "dd-dna-manage": "Управление ДНК",
+      "dd-search-title": "Исследование", "dd-search-all": "Поиск по всем записям", "dd-search-vitals": "Реестры рождения, браков и смерти", "dd-search-census": "Записи переписи населения", "dd-search-trees": "Генеалогические деревья", "dd-search-news": "Газеты", "dd-search-immigration": "Записи об иммиграции", 
+    "dd-tree-title": "Древо Семьи", "dd-tree-mytree": "Моё древо", "dd-tree-photos": "Мои фото", "dd-tree-gedcom": "Импорт GEDCOM", "dd-tree-timeline": "Хронология", "dd-tree-map": "Семейная карта", "dd-tree-backup": "Резервная копия", "dd-tree-manage": "Управление", "dd-tree-sources": "Источники", "dd-tree-relations": "Отношения", "nav-tree": "Древо Семьи", "nav-archive": "Архив", "dd-photo-title": "Личные Фото", "dd-photo-myphotos": "Мои Фото", "nav-photo": "Личные Фото", "nav-dna": "ДНК", "nav-ki": "KI", "nav-search": "Исследование",
+    "nav-search-placeholder": "Поиск…",
+    "nav-login": "Войти", "nav-register": "Регистрация", "top-functions": "ФУНКЦИИ",
+    "tariffs-title": "Тарифы",
+    "tariff1-name": "Тариф 1", "tariff1-desc": "100 человек в семейном древе · форум · поиск",
+    "tariff2-name": "Тариф 2", "tariff2-desc": "500 человек в семейном древе · форум · поиск · просмотр архива",
+    "tariff3-name": "Тариф 3", "tariff3-desc": "Без ограничений · все функции",
+    "hero-badge": "Генеалогическая платформа следующего поколения",
+    "hero-subtitle": "Откройте свои корни. Соедините поколения.",
+    "hero-desc": "Исследуйте историю своей семьи с помощью ИИ, анализа ДНК и технологии OCR. Погрузитесь в архивы, постройте семейное дерево и присоединитесь к мировому сообществу генеалогов.",
+    "stat-members": "Участников", "stat-docs": "Документов", "stat-ocr": "Точность OCR", "stat-countries": "Стран",
+    "feat-tag": "Функции", "feat-title": "Всё для вашего генеалогического исследования",
+    "feat-desc": "От анализа документов до расшифровки ДНК — GAMLB предоставляет все инструменты в одном месте.",
+    "f1-title": "Конструктор родословного дерева", "f1-desc": "Создавайте интерактивные деревья с неограниченным числом поколений, фотографиями и документами. Импорт/экспорт в формате GEDCOM.",
+    "f2-title": "OCR и HTR", "f2-desc": "Автоматическая оцифровка старых рукописей и документов. ИИ распознаёт исторические тексты XVII–XX веков.",
+    "f3-title": "ИИ-ассистент", "f3-desc": "Позвольте ИИ находить связи, анализировать документы и предлагать стратегии исследования вашей семейной истории.",
+    "f4-title": "Анализ ДНК", "f4-desc": "Загрузите сырые данные ДНК и найдите генетических родственников. Оценка этнического происхождения и гаплогрупп.",
+    "f5-title": "База данных архивов", "f5-desc": "Доступ к миллионам оцифрованных церковных книг, актов гражданского состояния и исторических документов.",
+    "f6-title": "Форум сообщества", "f6-desc": "Общайтесь с тысячами генеалогов, задавайте вопросы и помогайте другим в исследованиях.",
+    "f7-title": "Умный поиск", "f7-desc": "Поиск по базе данных по именам, местам, датам и профессиям — с учётом вариантов написания.",
+    "f8-title": "Географические карты", "f8-desc": "Отслеживайте миграцию вашей семьи на интерактивных исторических картах.",
+    "how-tag": "Процесс", "how-title": "4 шага к истории вашей семьи", "how-desc": "Просто, быстро и без специальных знаний.",
+    "step1-title": "Регистрация", "step1-desc": "Создайте бесплатный аккаунт и выберите тариф.",
+    "step2-title": "Создание дерева", "step2-desc": "Начните с себя и расширяйте дерево шаг за шагом.",
+    "step3-title": "Загрузка документов", "step3-desc": "Загружайте фото и документы — ИИ анализирует их автоматически.",
+    "step4-title": "Открывайте и соединяйте", "step4-desc": "Находите родственников, открывайте документы и делитесь своей историей.",
+    "tech-tag": "Технологии", "tech-title": "Передовые технологии для ваших исследований",
+    "tech-p1": "Наш OCR/HTR-движок на основе ИИ распознаёт исторические рукописи с точностью более 95%. Поддерживаются тексты на 12+ языках.",
+    "tech-p2": "Анализ ДНК сравнивает ваши генетические данные с мировой базой данных для идентификации родственных семей.",
+    "tech-dna-title": "Анализ ДНК", "tech-dna-desc": "Загрузите сырые данные с 23andMe, AncestryDNA или MyHeritage.",
+    "forum-tag": "Сообщество", "forum-title": "Актуальные обсуждения", "forum-desc": "Станьте частью активного сообщества генеалогов.",
+    "fi1-title": "Церковные книги из России — где найти оцифровки?", "fi1-info": "от Марии К. · 2 часа назад · Категория: Архивы",
+    "fi2-title": "Улучшение результатов HTR: советы и хитрости", "fi2-info": "от Ганса Б. · 5 часов назад · Категория: OCR/HTR",
+    "fi3-title": "Найдено совпадение ДНК — что дальше?", "fi3-info": "от Анны С. · 1 день назад · Категория: ДНК",
+    "fi4-title": "ИИ-ассистент GAMLB: отзывы пользователей", "fi4-info": "от Петра Л. · 2 дня назад · Категория: ИИ",
+    "replies": "Ответов",
+    "cta-title": "Начните путешествие в прошлое", "cta-desc": "Более 500 000 генеалогов уже доверяют GAMLB.", "cta-btn": "Зарегистрироваться бесплатно",
+    "footer-product": "Продукт", "footer-tree": "Родословное дерево", "footer-ocr": "OCR / HTR", "footer-dna": "Анализ ДНК", "footer-ki": "ИИ-ассистент", "footer-archive": "Архив",
+    "footer-community": "Сообщество", "footer-forum": "Форум", "footer-blog": "Блог", "footer-events": "События", "footer-experts": "Эксперты",
+    "footer-legal": "Юридическое", "footer-privacy": "Конфиденциальность", "footer-terms": "Условия", "footer-imprint": "О нас", "footer-contact": "Контакты",
+    "footer-rights": "Все права защищены",
+    "modal-title": "Добро пожаловать в GAMLB", "modal-desc": "Откройте историю вашей семьи",
+    "tab-login": "Войти", "tab-register": "Регистрация",
+    "form-email": "E-Mail", "form-password": "Пароль", "form-name": "Имя и фамилия",
+    "form-login-btn": "Войти", "form-register-btn": "Зарегистрироваться бесплатно",
+    "oauth-google": "Регистрация через Google", "oauth-or": "или",
+    "profile-account": "Мой аккаунт", "profile-tree": "Родословное дерево", "profile-stats": "Статистика", "profile-logout": "Выйти"
+  },
+  en: {
+    "nav-tagline": "Genealogical Community",
+    "nav-features": "Features", "nav-how": "How It Works",
+    "nav-tech": "Technology", "nav-forum": "Community",
+      "dd-community-title": "Community", "dd-forum": "Community Forum", "dd-maps": "Geographic Maps", "dd-colonies": "Colonies",
+      "dd-ki-title": "KI", "dd-ki-ai": "AI Assistant", "dd-ki-ocr": "OCR/HTR",
+      "dd-archive-title": "Archive", "dd-archive-db": "Archive Database", "dd-archive-church": "Church Scans", "dd-archive-family": "Family Lists", "dd-archive-household": "Household Lists", "dd-archive-photoarchive": "Photo Archive",
+      "dd-dna-title": "DNA", "dd-dna-analysis": "DNA Analysis", "dd-dna-overview": "DNA Overview", "dd-dna-matches": "DNA Matches", "dd-dna-manage": "DNA Management",
+      "dd-search-title": "Research", "dd-search-all": "Search All Records", "dd-search-vitals": "Birth, Marriage & Death Registers", "dd-search-census": "Census Records", "dd-search-trees": "Family Trees", "dd-search-news": "Newspapers", "dd-search-immigration": "Immigration Records", 
+    "dd-tree-title": "Family Tree", "dd-tree-mytree": "My Tree", "dd-tree-photos": "My Photos", "dd-tree-gedcom": "Import GEDCOM", "dd-tree-timeline": "Timeline", "dd-tree-map": "Family Map", "dd-tree-backup": "Backup", "dd-tree-manage": "Manage", "dd-tree-sources": "Sources", "dd-tree-relations": "Relationships", "nav-tree": "Family Tree", "nav-archive": "Archive", "dd-photo-title": "Personal Photos", "dd-photo-myphotos": "My Photos", "nav-photo": "Personal Photos", "nav-dna": "DNA", "nav-ki": "KI", "nav-search": "Research",
+    "nav-search-placeholder": "Search…",
+    "nav-login": "Sign In", "nav-register": "Sign Up", "top-functions": "FUNCTIONS",
+    "tariffs-title": "Plans",
+    "tariff1-name": "Plan 1", "tariff1-desc": "100 people in the family tree · forum · search",
+    "tariff2-name": "Plan 2", "tariff2-desc": "500 people in the family tree · forum · search · archive view",
+    "tariff3-name": "Plan 3", "tariff3-desc": "Unlimited · all features",
+    "hero-badge": "Next-Generation Genealogical Platform",
+    "hero-subtitle": "Discover Your Roots. Connect Generations.",
+    "hero-desc": "Explore your family history with cutting-edge AI, DNA analysis and OCR technology. Dive into archives, build family trees and connect with a worldwide community of genealogists.",
+    "stat-members": "Members", "stat-docs": "Documents", "stat-ocr": "OCR Accuracy", "stat-countries": "Countries",
+    "feat-tag": "Features", "feat-title": "Everything for Your Family Research",
+    "feat-desc": "From document analysis to DNA evaluation — GAMLB provides all tools in one place.",
+    "f1-title": "Family Tree Builder", "f1-desc": "Create interactive family trees with unlimited generations, photos and documents. Import/export in GEDCOM format.",
+    "f2-title": "OCR & HTR", "f2-desc": "Automatically digitise old handwriting and documents. Our AI recognises historical scripts from the 17th–20th centuries.",
+    "f3-title": "AI Assistant", "f3-desc": "Let our AI find connections, analyse documents and suggest research strategies for your family history.",
+    "f4-title": "DNA Analysis", "f4-desc": "Upload your raw DNA data and find genetic relatives. Ethnicity estimates and haplogroup analysis.",
+    "f5-title": "Archive Database", "f5-desc": "Access millions of digitised parish records, civil registration records and historical documents.",
+    "f6-title": "Community Forum", "f6-desc": "Connect with thousands of genealogists, ask questions and help others with their research.",
+    "f7-title": "Smart Search", "f7-desc": "Search the entire database by names, places, dates and professions — including name variants.",
+    "f8-title": "Geographic Maps", "f8-desc": "Track your family's migration on interactive historical maps through the centuries.",
+    "how-tag": "Process", "how-title": "4 Steps to Your Family History", "how-desc": "Simple, fast and no prior knowledge required.",
+    "step1-title": "Register", "step1-desc": "Create your free account and choose your plan.",
+    "step2-title": "Create Tree", "step2-desc": "Start with yourself and expand the tree step by step.",
+    "step3-title": "Upload Documents", "step3-desc": "Upload photos and documents — our AI analyses them automatically.",
+    "step4-title": "Discover & Connect", "step4-desc": "Find relatives, discover documents and share your story.",
+    "tech-tag": "Technology", "tech-title": "State-of-the-Art Technology for Your Research",
+    "tech-p1": "Our AI-powered OCR/HTR engine recognises historical handwriting with an accuracy of over 95%. Supports texts in more than 12 languages.",
+    "tech-p2": "DNA analysis compares your genetic data with a worldwide database to identify related families.",
+    "tech-dna-title": "DNA Analysis", "tech-dna-desc": "Upload raw data from 23andMe, AncestryDNA or MyHeritage.",
+    "forum-tag": "Community", "forum-title": "Recent Discussions", "forum-desc": "Join an active community of genealogy enthusiasts.",
+    "fi1-title": "Church Records from Russia — Where to Find Digitised Copies?", "fi1-info": "by Maria K. · 2 hours ago · Category: Archives",
+    "fi2-title": "Improving HTR Results: Tips & Tricks", "fi2-info": "by Hans B. · 5 hours ago · Category: OCR/HTR",
+    "fi3-title": "DNA Match Found — What to Do Next?", "fi3-info": "by Anna S. · 1 day ago · Category: DNA",
+    "fi4-title": "GAMLB AI Assistant: User Experiences", "fi4-info": "by Peter L. · 2 days ago · Category: AI",
+    "replies": "Replies",
+    "cta-title": "Begin Your Journey into the Past", "cta-desc": "Over 500,000 genealogists already trust GAMLB.", "cta-btn": "Register for Free",
+    "footer-product": "Product", "footer-tree": "Family Tree", "footer-ocr": "OCR / HTR", "footer-dna": "DNA Analysis", "footer-ki": "AI Assistant", "footer-archive": "Archive",
+    "footer-community": "Community", "footer-forum": "Forum", "footer-blog": "Blog", "footer-events": "Events", "footer-experts": "Experts",
+    "footer-legal": "Legal", "footer-privacy": "Privacy Policy", "footer-terms": "Terms of Service", "footer-imprint": "Imprint", "footer-contact": "Contact",
+    "footer-rights": "All rights reserved",
+    "modal-title": "Welcome to GAMLB", "modal-desc": "Discover your family history",
+    "tab-login": "Sign In", "tab-register": "Sign Up",
+    "form-email": "Email", "form-password": "Password", "form-name": "Full Name",
+    "form-login-btn": "Sign In", "form-register-btn": "Register for Free",
+    "oauth-google": "Continue with Google", "oauth-or": "or",
+    "profile-account": "My Account", "profile-tree": "Family Tree", "profile-stats": "Statistics", "profile-logout": "Sign Out"
+  }
+};
+
+let currentLang = 'de';
+let selectedSubscriptionPlan = null;
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent === lang.toUpperCase()) b.classList.add('active'); });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) el.textContent = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(translations[lang][key]) el.setAttribute('placeholder', translations[lang][key]);
+  });
+  document.documentElement.lang = lang;
+}
+
+// Synchronise all translated content with the declared default language on first load.
+setLang(currentLang);
+
+function openModal(tab) {
+  document.getElementById('modal').classList.add('active');
+  switchTab(tab);
+  setTimeout(() => renderGoogleButton('googleBtnContainer'), 80);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+function resetSubscriptionSelection() {
+  selectedSubscriptionPlan = null;
+  document.querySelectorAll('.subscription-option').forEach(btn => btn.classList.remove('selected'));
+  const continueBtn = document.getElementById('registerContinueBtn');
+  if (continueBtn) {
+    continueBtn.disabled = true;
+    continueBtn.textContent = 'Kostenlos registrieren';
+  }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.modal-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+  });
+  document.getElementById('panel-login').classList.toggle('active', tab === 'login');
+  document.getElementById('panel-register').classList.toggle('active', tab === 'register');
+  if (tab === 'register') resetSubscriptionSelection();
+}
+
+function selectSubscriptionPlan(price, planName, button) {
+  selectedSubscriptionPlan = planName;
+  document.querySelectorAll('.subscription-option').forEach(btn => btn.classList.remove('selected'));
+  button.classList.add('selected');
+  const continueBtn = document.getElementById('registerContinueBtn');
+  if (continueBtn) {
+    continueBtn.disabled = false;
+    continueBtn.textContent = 'Weiter mit ' + price;
+  }
+}
+
+// ── УТИЛИТЫ ──────────────────────────────────────────────────────────────────
+
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = loading;
+  btn.style.opacity = loading ? '0.7' : '1';
+  btn.style.cursor  = loading ? 'wait' : '';
+}
+
+function showError(panelId, msg) {
+  const el = document.getElementById(panelId + '-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+}
+
+function parseJwt(token) {
+  try {
+    const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(atob(base64));
+  } catch(e) { return {}; }
+}
+
+// ── ВХОД ─────────────────────────────────────────────────────────────────────
+
+async function submitLogin() {
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  showError('login', '');
+
+  if (!email || !password) { showError('login', 'Bitte E-Mail und Passwort eingeben.'); return; }
+
+  setLoading('loginBtn', true);
+  try {
+    const res  = await fetch('/api/auth/login', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const msgs = {
+        INVALID_CREDENTIALS: 'Falsche E-Mail oder Passwort.',
+        ACCOUNT_BLOCKED:     'Ihr Konto wurde gesperrt.',
+        INVALID_INPUT:       'Ungültige Eingabe.'
+      };
+      showError('login', msgs[body.error] || ('Fehler: ' + (body.error || res.status)));
+      return;
+    }
+    applySession(body.user);
+    closeModal();
+  } catch(e) {
+    showError('login', 'Netzwerkfehler. Ist der Server erreichbar?');
+  } finally {
+    setLoading('loginBtn', false);
+  }
+}
+
+// Enter в полях логина
+document.addEventListener('DOMContentLoaded', () => {
+  ['login-email','login-password'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') submitLogin(); });
+  });
+  ['reg-name','reg-email','reg-password'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') submitRegister(); });
+  });
+});
+
+// ── РЕГИСТРАЦИЯ ───────────────────────────────────────────────────────────────
+
+async function submitRegister() {
+  const name     = document.getElementById('reg-name').value.trim();
+  const email    = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const planName = selectedSubscriptionPlan;
+  showError('register', '');
+
+  if (!planName)           { showError('register', 'Bitte einen Tarif auswählen.');          return; }
+  if (!name)               { showError('register', 'Bitte Vor- und Nachname eingeben.');      return; }
+  if (!email)              { showError('register', 'Bitte E-Mail eingeben.');                 return; }
+  if (password.length < 8) { showError('register', 'Passwort muss mindestens 8 Zeichen haben.'); return; }
+
+  setLoading('registerContinueBtn', true);
+  try {
+    const res  = await fetch('/api/auth/register', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password, planName })
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const msgs = {
+        EMAIL_ALREADY_EXISTS: 'Diese E-Mail ist bereits registriert.',
+        INVALID_INPUT:        'Ungültige Eingabe. Bitte alle Felder prüfen.'
+      };
+      showError('register', msgs[body.error] || ('Fehler: ' + (body.error || res.status)));
+      return;
+    }
+    applySession(body.user);
+    closeModal();
+  } catch(e) {
+    showError('register', 'Netzwerkfehler. Ist der Server erreichbar?');
+  } finally {
+    setLoading('registerContinueBtn', false);
+  }
+}
+
+// ── GOOGLE OAUTH (GSI renderButton — без redirect URI) ────────────────────────
+
+const GOOGLE_CLIENT_ID = '131467229339-g0bjrpj7mh05tbb6u71615lj2dmmc3pv.apps.googleusercontent.com';
+let googleInitialized = false;
+
+function renderGoogleButton(containerId) {
+  if (!GOOGLE_CLIENT_ID || typeof google === 'undefined') return;
+  if (!googleInitialized) {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+      ux_mode: 'popup',
+      auto_select: false
+    });
+    googleInitialized = true;
+  }
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.innerHTML = '';
+    google.accounts.id.renderButton(container, {
+      type: 'standard', theme: 'outline', size: 'large',
+      text: 'continue_with', shape: 'rectangular',
+      width: Math.min(container.offsetWidth || 320, 400)
+    });
+  }
+}
+
+async function handleGoogleCredential(response) {
+  showError('register', '');
+  try {
+    const res  = await fetch('/api/auth/google', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: response.credential })
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.error || 'GOOGLE_LOGIN_FAILED');
+    applySession(body.user);
+    closeModal();
+  } catch(err) {
+    showError('register', 'Google-Anmeldung fehlgeschlagen: ' + err.message);
+  }
+}
+
+// ── СЕССИЯ ────────────────────────────────────────────────────────────────────
+
+function applySession(user) {
+  if (!user) return;
+  loginUser({ name: user.name || user.email || 'Nutzer', avatar: user.avatar || null });
+}
+
+// Восстанавливаем сессию при загрузке страницы
+fetch('/api/auth/me', { credentials: 'include' })
+  .then(r => r.ok ? r.json() : null)
+  .then(body => { if (body?.user) applySession(body.user); })
+  .catch(() => {});
+
+// Google SDK — рендерим кнопку когда SDK готов
+window.addEventListener('load', () => {
+  if (typeof google !== 'undefined') renderGoogleButton('googleBtnContainer');
+});
+document.querySelector('script[src*="accounts.google.com"]')
+  ?.addEventListener('load', () => renderGoogleButton('googleBtnContainer'));
+
+function loginUser(user) {
+  const profile     = document.getElementById('userProfile');
+  const avatar      = document.getElementById('userAvatar');
+  const nameEl      = document.getElementById('userName');
+  const btnLogin    = document.getElementById('btnLogin');
+  const btnRegister = document.getElementById('btnRegister');
+
+  const initials = (user.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  avatar.textContent = initials;
+  if (user.avatar) {
+    avatar.innerHTML = `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>`;
+  }
+  nameEl.textContent = user.name || user.email || 'Nutzer';
+  profile.classList.add('visible');
+  btnLogin.style.display    = 'none';
+  btnRegister.style.display = 'none';
+}
+
+function logoutUser() {
+  fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+  const profile     = document.getElementById('userProfile');
+  const btnLogin    = document.getElementById('btnLogin');
+  const btnRegister = document.getElementById('btnRegister');
+  profile.classList.remove('visible');
+  btnLogin.style.display    = '';
+  btnRegister.style.display = '';
+  if (typeof google !== 'undefined') google.accounts.id.disableAutoSelect();
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') closeModal();
+});
+</script>
+
+    <script>
+    // Фиксим dropdown меню профиля чтобы не исчезал при наведении
+    const userProfile = document.getElementById('userProfile');
+    const userDropdown = document.querySelector('.user-dropdown');
+    
+    if (userProfile && userDropdown) {
+      let hideTimeout;
+      
+      userProfile.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+        userDropdown.style.display = 'block';
+      });
+      
+      userProfile.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          userDropdown.style.display = 'none';
+        }, 100);
+      });
+      
+      userDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+        userDropdown.style.display = 'block';
+      });
+      
+      userDropdown.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          userDropdown.style.display = 'none';
+        }, 100);
+      });
+    }
+    </script>
+</body>
+</html>

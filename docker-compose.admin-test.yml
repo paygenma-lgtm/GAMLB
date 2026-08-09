@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: gamlb-admin-test-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gamlb_test}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-replace-test-password}
+      POSTGRES_DB: ${POSTGRES_DB:-gamlb_test}
+    volumes:
+      - gamlb_admin_test_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-gamlb_test} -d ${POSTGRES_DB:-gamlb_test}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: gamlb-admin-test-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:?Set a test JWT_SECRET of at least 32 characters}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-test-client}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-postmessage}
+      COOKIE_NAME: gamlb_test_session
+      FRONTEND_ORIGIN: http://localhost:18081
+      DATABASE_URL: postgresql://${POSTGRES_USER:-gamlb_test}:${POSTGRES_PASSWORD:-replace-test-password}@postgres:5432/${POSTGRES_DB:-gamlb_test}
+      DATABASE_SSL: "false"
+      RUN_MIGRATIONS: "true"
+      UPLOAD_DIR: /app/data/uploads
+      DB_FILE: /app/data/runtime/users.json
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Set ADMIN_EMAIL to the test administrator account}
+      ADMIN_AUDIT_FILE: /app/data/runtime/admin-audit.json
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - gamlb_admin_test_uploads:/app/data/uploads
+      - gamlb_admin_test_api_data:/app/data/runtime
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: gamlb-admin-test-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18081:80"
+    depends_on:
+      - api
+
+volumes:
+  gamlb_admin_test_postgres_data:
+  gamlb_admin_test_uploads:
+  gamlb_admin_test_api_data:
